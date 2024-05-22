@@ -6,6 +6,9 @@ use App\Http\Controllers\AuthManager;
 use App\Http\Controllers\StopController;
 use App\Http\Controllers\ShortestPathController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\RouteController;
+use App\Http\Controllers\ConnectionController;
+use App\Http\Controllers\RoutestopController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -32,3 +35,12 @@ Route::post('/stop', [StopController::class, 'store'])->name('stop.store');
 Route::get('/stop/{stop}/edit', [StopController::class, 'edit'])->name('stop.edit');
 Route::put('/stop/{stop}/update', [StopController::class, 'update'])->name('stop.update');
 Route::delete('/stop/{stop}/delete', [StopController::class, 'delete'])->name('stop.delete');
+
+// Route routes
+Route::get('/route',[RouteController::class,'index'])->name('route.index');
+Route::get('/route/create',[RouteController::class,'create'])->name('route.create');
+Route::resource('routes', RouteController::class);
+// connection routes
+Route::resource('connections', ConnectionController::class);
+// routestop routes
+Route::resource('routestops', RoutestopController::class);
